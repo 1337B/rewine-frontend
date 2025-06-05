@@ -1,37 +1,21 @@
 <!-- src/App.vue -->
 
 <template>
-  <div class="min-h-screen flex flex-col">
-
+  <div class="flex flex-col min-h-screen bg-gray-50 dark:bg-background">
     <!-- Navbar -->
-    <nav class="bg-gray-800 text-white p-4 flex justify-between">
-      <div class="text-xl font-bold">Rewine</div>
-      <div class="space-x-4">
-        <router-link to="/" class="hover:underline">Home</router-link>
-        <router-link to="/wines" class="hover:underline">Wines</router-link>
-        <router-link to="/login" class="hover:underline">Login</router-link>
-        <router-link to="/register" class="hover:underline">Register</router-link>
-        <router-link to="/profile/settings" class="hover:underline">Profile</router-link>
-      </div>
-    </nav>
+    <Navbar />
 
     <!-- Main content -->
-    <main class="flex-1 p-6">
+    <main class="flex-grow container mx-auto px-4 py-8">
       <router-view />
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-200 text-center p-4">
-      © 2025 Rewine. All rights reserved.
-    </footer>
-
+    <Footer />
   </div>
 </template>
 
 <script setup>
-// No script por ahora
+import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
 </script>
-
-<style>
-/* Podés agregar estilos globales acá si querés */
-</style>
