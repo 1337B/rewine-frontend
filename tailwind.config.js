@@ -11,7 +11,7 @@ export default {
         primary: '#591515',
         background: '#F7DCDC',
         'text-dark': '#591515',
-        'text-light': '#FFFFFA',
+        'text-text-light': '#FFFFFA',
         'form-box': '#42393F',
         'light-hover': '#994242',
       },

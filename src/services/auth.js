@@ -1,11 +1,8 @@
 // src/services/auth.js
 
-// Por ahora simulamos con un fake promise (después lo conectamos con el backend)
 export async function login(email, password) {
-  // Log para ver que se llama
   console.log('Calling login service with:', email, password)
 
-  // Simulación: devolvemos un "fake token"
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
@@ -15,6 +12,22 @@ export async function login(email, password) {
           name: 'Test User',
         },
       })
-    }, 1000) // Simula delay de red
+    }, 1000)
+  })
+}
+
+export async function register(email, username, password) {
+  console.log('Calling register service with:', email, username, password)
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        success: true,
+        user: {
+          email: email,
+          username: username,
+        },
+      })
+    }, 1000)
   })
 }
