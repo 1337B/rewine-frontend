@@ -1,44 +1,64 @@
-<!-- src/views/Wines.vue -->
-
 <template>
   <section class="flex flex-col justify-center items-center py-12">
-    <div class="w-full max-w-4xl p-6 space-y-6">
+    <div class="w-full max-w-6xl p-6 space-y-6">
       <h1 class="text-3xl font-bold mb-6">Wines</h1>
-      <div v-for="wine in wines" :key="wine.id" class="border p-4 rounded mb-4 shadow">
-        <h2 class="text-xl font-semibold">{{ wine.name }}</h2>
-        <p><strong>Winery:</strong> {{ wine.winery }}</p>
-        <p><strong>Variety:</strong> {{ wine.variety }}</p>
-        <p><strong>Average Score:</strong> {{ wine.score }}</p>
+
+      <!-- Campo de búsqueda -->
+      <input
+        type="text"
+        v-model="searchQuery"
+        placeholder="Search wines..."
+        class="w-full mb-6 p-2 border rounded"
+      />
+
+      <!-- Listado de vinos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <WineCard v-for="wine in filteredWines" :key="wine.id" :wine="wine" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import WineCard from '../components/WineCard.vue'
 
-// Simulated wine data → después se va a reemplazar por llamada a API
+// Simulación de datos, reemplazable por API más adelante
 const wines = ref([
   {
     id: 1,
     name: 'Malbec Gran Reserva',
     winery: 'Bodega Trapiche',
     variety: 'Malbec',
-    score: 4.5
+    score: 4.5,
+    imageUrl: 'https://www.vitvin.com.ar/wp-content/uploads/2024/08/creacion-malbec_1.jpeg'
   },
   {
     id: 2,
     name: 'Cabernet Sauvignon Premium',
     winery: 'Bodega Norton',
     variety: 'Cabernet Sauvignon',
-    score: 4.3
+    score: 4.3,
+    imageUrl: 'https://borrachines.com.ar/wp-content/uploads/2022/04/Reservado-Vino-Cabernet-Sauvignon-750ml-01-Mercado-e1724414351990.png'
   },
   {
     id: 3,
     name: 'Pinot Noir Select',
     winery: 'Bodega Catena Zapata',
     variety: 'Pinot Noir',
-    score: 4.7
+    score: 4.7,
+    imageUrl: 'https://www.norton.com.ar/wp-content/uploads/2023/09/Altura-Pinot-Noir.jpg'
   }
 ])
+
+const searchQuery = ref('')
+
+const filteredWines = computed(() => {
+  if (!searchQuery.value.trim()) return wines.value
+  return wines.value.filter(wine =>
+    wine.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    wine.winery.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    wine.variety.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+})
 </script>
