@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col justify-center items-center py-12">
     <div class="w-full max-w-6xl p-6 space-y-6">
-      <h1 class="text-3xl font-bold mb-6">Wines</h1>
+      <h1 class="text-3xl text-black font-bold mb-6">Wines</h1>
 
       <!-- Campo de búsqueda -->
       <input
